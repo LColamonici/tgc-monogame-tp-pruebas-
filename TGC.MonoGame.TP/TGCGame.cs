@@ -136,9 +136,11 @@ namespace TGC.MonoGame.TP
             GraphicsDevice.Clear(Color.Black);
 
             // Para dibujar le modelo necesitamos pasarle informacion que el efecto esta esperando.
-            Effect.Parameters["View"].SetValue(View);
-            Effect.Parameters["Projection"].SetValue(Projection);
-            Effect.Parameters["DiffuseColor"].SetValue(Color.DarkBlue.ToVector3());
+            Effect.Parameters["View"]?.SetValue(View);
+            Effect.Parameters["Projection"]?.SetValue(Projection);
+            Effect.Parameters["DiffuseColor"]?.SetValue(Color.DarkBlue.ToVector3());
+            Effect.Parameters["Min"]?.SetValue(-0.25f);//resolucion 3
+            Effect.Parameters["Max"]?.SetValue(0.25f);//    | |
 
             foreach (var mesh in Model.Meshes)
             {
