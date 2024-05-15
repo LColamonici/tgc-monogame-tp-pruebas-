@@ -20,6 +20,8 @@ float4x4 Projection;
 uniform float Min;
 uniform float Max;
 
+uniform float4 Plano;
+
 float3 DiffuseColor;
 
 float Time = 0;
@@ -80,9 +82,20 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 		//return float4(input.LocalPosition.x,input.LocalPosition.y,input.LocalPosition.z,1); //bueno para debuggear
 }*/
 
-float4 MainPS(VertexShaderOutput input) : COLOR
+/*float4 MainPS(VertexShaderOutput input) : COLOR
 {
 	return float4(DiffuseColor,1.0);
+	//return float4(1.0,0.0,0.0,1.0);
+}*/
+
+float4 MainPS(VertexShaderOutput input) : COLOR
+{
+	float4 rojo = float4(1.0,0.0,0.0,1.0);
+	float3 normal = normalize(Plano.xyz);
+	float Dist = dot(input.WorldPosition.xyz, normal + Plano.w);
+	if(Dist<0.0)
+		discard;
+	return rojo;
 }
 
 technique BasicColorDrawing

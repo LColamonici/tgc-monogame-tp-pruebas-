@@ -141,6 +141,7 @@ namespace TGC.MonoGame.TP
             Effect.Parameters["DiffuseColor"]?.SetValue(Color.DarkBlue.ToVector3());
             Effect.Parameters["Min"]?.SetValue(-0.25f);//resolucion 3
             Effect.Parameters["Max"]?.SetValue(0.25f);//    | |
+            Effect.Parameters["Plano"]?.SetValue(new Vector4(0f, 1f, 1f, 1f));//    | |
 
             foreach (var mesh in Model.Meshes)
             {
